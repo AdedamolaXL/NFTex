@@ -138,7 +138,7 @@ export default function Home() {
 
       checkIfAddressInWhitelist();
       getNumberOfWhitelisted();
-    } catch (err) {
+   } catch (err) {
       console.error(err);
     }
   };
