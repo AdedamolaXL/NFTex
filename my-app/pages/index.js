@@ -4,6 +4,7 @@ import Web3Modal from "web3modal";
 import { providers, Contract } from "ethers";
 import { useEffect, useRef, useState } from "react";
 import { WHITELIST_CONTRACT_ADDRESS, abi } from "../constants";
+import background from "../public/holy-grail.png";
 
 export default function Home() {
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -35,11 +36,11 @@ export default function Home() {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
-    // If user is not connected to the Mumbai network, let them know and throw an error
+    // If user is not connected to the Rinkeby network, let them know and throw an error
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 80001) {
-      window.alert("Change the network to Mumbai");
-      throw new Error("Change network to Mumbai");
+    if (chainId !== 4) {
+      window.alert("Change the network to Rinkeby");
+      throw new Error("Change network to Rinkeby");
     }
 
     if (needSigner) {
@@ -138,7 +139,7 @@ export default function Home() {
 
       checkIfAddressInWhitelist();
       getNumberOfWhitelisted();
-   } catch (err) {
+    } catch (err) {
       console.error(err);
     }
   };
@@ -151,7 +152,7 @@ export default function Home() {
       if (joinedWhitelist) {
         return (
           <div className={styles.description}>
-            Thanks for joining the Whitelist!
+            Thanks for joining the Round-Table!
           </div>
         );
       } else if (loading) {
@@ -159,7 +160,7 @@ export default function Home() {
       } else {
         return (
           <button onClick={addAddressToWhitelist} className={styles.button}>
-            Join the Whitelist
+            Join the Round-Table
           </button>
         );
       }
@@ -181,7 +182,7 @@ export default function Home() {
       // Assign the Web3Modal class to the reference object by setting it's `current` value
       // The `current` value is persisted throughout as long as this page is open
       web3ModalRef.current = new Web3Modal({
-        network: "mumbai",
+        network: "rinkeby",
         providerOptions: {},
         disableInjectedProvider: false,
       });
@@ -198,23 +199,19 @@ export default function Home() {
       </Head>
       <div className={styles.main}>
         <div>
-          <h1 className={styles.title}>Welcome to COLOSSEUM!</h1>
+          <h6 className={styles.title}>🔥PARZIFAL🔥</h6>
           <div className={styles.description}>
-            An NFT Collecting DAO
+            An NFT Collection for Hunters of the Grail.
           </div>
           <div className={styles.description}>
-            {numberOfWhitelisted} have already joined the Whitelist
+            {numberOfWhitelisted} knights have joined the Round-Table
           </div>
           {renderButton()}
         </div>
-        <div>
-          <img className={styles.image} src="./crypto-devs.svg" />
-        </div>
       </div>
-
-      <footer className={styles.footer}>
-        Made with &#10084; by Cyberroninn
-      </footer>
     </div>
   );
-} 
+}
+//<div>
+//
+//</div>

@@ -3,6 +3,10 @@
 }
 
 .main {
+  color: white;
+  background-image: url(../public/holy-grail.png);
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
@@ -116,5 +120,7 @@
 }
 
 .button {
-  justify-content: center;
+  margin-left: 170px;
+  padding: 3px 5px;
+  border: 3px solid green;
 }
